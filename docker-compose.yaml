@@ -1,0 +1,86 @@
+services:
+    traefik:
+        container_name: web_insight_haven_traefik
+        image: traefik:2.11
+        command:
+            - --api.insecure=true
+            - --api.dashboard=true
+            - --providers.docker
+            - --providers.docker.exposedByDefault=false
+            - --entryPoints.web.address=:80
+        ports:
+            - "80:80"
+            - "8080:8080"
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.traefik.rule=Host(`traefik.$DOMAIN`)
+            - traefik.http.routers.traefik.service=traefik
+            - traefik.http.services.traefik.loadbalancer.server.port=8080
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+
+    app:
+        container_name: web_insight_haven_app
+        build:
+            context: .
+            target: base
+        volumes:
+            - ./:/app/:rw
+        working_dir: /app/
+        env_file: .env
+        environment:
+            STARTUP_COMMAND_1: sudo chmod -R 775 storage/
+            STARTUP_COMMAND_2: composer install
+            STARTUP_COMMAND_3: npm install
+            STARTUP_COMMAND_4: npm run production
+            STARTUP_COMMAND_5: php artisan migrate
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.app.rule=Host(`$DOMAIN`)
+            - traefik.http.routers.app.entrypoints=web
+
+    mysql:
+        container_name: web_insight_haven_mysql
+        image: mysql:8.0
+        restart: unless-stopped
+        volumes:
+            - mysql_data:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: "$DB_DATABASE"
+            MYSQL_USER: "$DB_USERNAME"
+            MYSQL_PASSWORD: "$DB_PASSWORD"
+            MYSQL_ROOT_PASSWORD: "$DB_ROOT_PASSWORD"
+
+    phpmyadmin:
+        container_name: web_insight_haven_pma
+        image: phpmyadmin/phpmyadmin
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.$DOMAIN`)
+            - traefik.http.routers.phpmyadmin.entrypoints=web
+        environment:
+            PMA_HOST: "$DB_HOST"
+            PMA_USER: "root"
+            PMA_PASSWORD: "$DB_ROOT_PASSWORD"
+
+    mailhog:
+        container_name: web_insight_haven_mail
+        image: mailhog/mailhog:latest
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.mailhog.rule=Host(`mailhog.$DOMAIN`)
+            - traefik.http.routers.mailhog.entrypoints=web
+            - traefik.http.services.mailhog.loadbalancer.server.port=8025
+
+    redis:
+        container_name: web_insight_haven_redis
+        image: redis:alpine
+        restart: unless-stopped
+        labels:
+            - traefik.enable=false
+        volumes:
+            - ./redis/volume:/data:rw
+
+volumes:
+    mysql_data:
+        driver: local
