@@ -21,6 +21,7 @@ header {
   color: rgb(250, 250, 250);
   border-bottom: 1px solid #DDD;
   box-shadow: $bs-card;
+  @include lightDark(background-color, #FFF, rgb(34, 34, 34));
   @include lightDark(border-bottom-color, #DDD, #000);
   .header-links {
     display: flex;
@@ -34,11 +35,12 @@ header {
   .links a {
     display: inline-block;
     padding: 10px $-m;
-    color: #FFF;
     border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    @include lightDark(color, #222, #FFF);
   }
   .links a:hover {
-    text-decoration: none;
     background-color: rgba(255, 255, 255, .15);
   }
   .dropdown-container {
@@ -53,6 +55,7 @@ header {
     height: 30px;
   }
   .user-name {
+    @include lightDark(color, #222, #fff);
     vertical-align: top;
     position: relative;
     display: inline-flex;
@@ -92,10 +95,10 @@ header {
 header .search-box {
   display: inline-block;
   input {
-    background-color: rgba(0, 0, 0, 0.2);
+    @include lightDark(color, #222, #EEE);
+    @include lightDark(background-color, #F6F6F6, rgba(0, 0, 0, 0.2));
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 40px;
-    color: #EEE;
     z-index: 2;
     height: auto;
     padding: $-xs*1.5;
@@ -106,7 +109,7 @@ header .search-box {
     }
   }
   input::placeholder {
-    color: #FFF;
+    @include lightDark(color, #222, #FFF);
     opacity: 0.6;
   }
   @include between($l, $xl) {
@@ -120,9 +123,8 @@ header .search-box {
   z-index: 1;
   inset-inline-start: 16px;
   top: 10px;
-  color: #FFF;
   opacity: 0.6;
-  @include lightDark(color, rgba(255, 255, 255, 0.8), #AAA);
+  @include lightDark(color, #222, #FFF);
   svg {
     margin-inline-end: 0;
   }
@@ -165,13 +167,6 @@ header .search-box.search-active:focus-within {
   .global-search-suggestions {
     display: block;
   }
-  input {
-    @include lightDark(background-color, #EEE, #333);
-    @include lightDark(border-color, #DDD, #111);
-  }
-  #header-search-box-button, input {
-    @include lightDark(color, #444, #AAA);
-  }
 }
 
 .logo {
@@ -190,9 +185,9 @@ header .search-box.search-active:focus-within {
 
 .logo-text {
   font-size: 1.8em;
-  color: #fff;
   font-weight: 400;
   line-height: 1;
+  @include lightDark(color, #222, #FFF);
 }
 .logo-image {
   height: 43px;

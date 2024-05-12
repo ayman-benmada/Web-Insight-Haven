@@ -27,7 +27,6 @@ button {
   &:hover, &:focus, &:active {
     background-color: var(--color-primary);
     text-decoration: none;
-    color: #FFFFFF;
   }
   &:hover {
     @include lightDark(box-shadow, $bs-light, $bs-dark);

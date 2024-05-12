@@ -1,4 +1,4 @@
-<header id="header" component="header-mobile-toggle" class="primary-background px-xl grid print-hidden">
+<header id="header" component="header-mobile-toggle" class="px-xl grid print-hidden">
     <div class="flex-container-row justify-space-between gap-s items-center">
         @include('layouts.parts.header-logo')
         <div class="hide-over-l py-s">
