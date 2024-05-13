@@ -31,7 +31,9 @@ return [
     'page-color-dark'      => '#429fe3',
     'page-draft-color-dark' => '#a66ce8',
     'app-custom-head'      => false,
-    'registration-enabled' => false,
+    'registration-enabled' => true,
+    'registration-confirmation' => true,
+    'app-public' => true,
 
     // User-level default settings
     'user' => [
