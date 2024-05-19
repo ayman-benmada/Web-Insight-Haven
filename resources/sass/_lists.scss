@@ -763,7 +763,7 @@ ul.pagination {
 .featured-image-container {
   position: relative;
   overflow: hidden;
-  min-height: 140px;
+  height: 100%;
   background-size: cover;
   background-position: 50% 50%;
   transition: opacity ease-in-out 240ms;
@@ -779,6 +779,7 @@ ul.pagination {
 }
 .featured-image-container-wrap {
   position: relative;
+  height: 295px;
   .svg-icon {
     @include lightDark(color, #fff, rgba(255, 255, 255, 0.6));
     font-size: 2rem;

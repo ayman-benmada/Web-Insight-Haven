@@ -103,12 +103,12 @@
 }
 
 .grid-card {
+  border-radius: 25px 4px 25px 4px;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
   @include lightDark(border-color, #ddd, #000);
   margin-bottom: $-l;
-  border-radius: 4px;
   overflow: hidden;
   min-width: 100px;
   color: $text-dark;

@@ -1885,7 +1885,6 @@ body.flexbox #content {
     display: none;
   }
   .tri-layout-middle-contents {
-    max-width: 940px;
     margin: 0 auto;
   }
 }
@@ -2116,12 +2115,12 @@ html.dark-mode .card.drag-card .handle {
 }
 
 .grid-card {
+  border-radius: 25px 4px 25px 4px;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
   border-color: #ddd;
   margin-bottom: 24px;
-  border-radius: 4px;
   overflow: hidden;
   min-width: 100px;
   color: #444;
@@ -6007,7 +6006,7 @@ html.dark-mode .dropdown-menu .icon-item, html.dark-mode .dropdown-menu .text-it
 .featured-image-container {
   position: relative;
   overflow: hidden;
-  min-height: 140px;
+  height: 100%;
   background-size: cover;
   background-position: 50% 50%;
   transition: opacity ease-in-out 240ms;
@@ -6024,6 +6023,7 @@ html.dark-mode .dropdown-menu .icon-item, html.dark-mode .dropdown-menu .text-it
 
 .featured-image-container-wrap {
   position: relative;
+  height: 295px;
 }
 .featured-image-container-wrap .svg-icon {
   color: #fff;

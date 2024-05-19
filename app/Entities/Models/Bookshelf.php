@@ -53,16 +53,15 @@ class Bookshelf extends Entity implements HasCoverImage
     /**
      * Returns shelf cover image, if cover not exists return default cover image.
      */
-    public function getBookCover(int $width = 440, int $height = 250): string
+    public function getBookCover(): string
     {
-        // TODO - Make generic, focused on books right now, Perhaps set-up a better image
         $default = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
         if (!$this->image_id || !$this->cover) {
             return $default;
         }
 
         try {
-            return $this->cover->getThumb($width, $height, false) ?? $default;
+            return $this->cover->path ?? $default;
         } catch (Exception $err) {
             return $default;
         }
