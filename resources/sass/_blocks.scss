@@ -104,9 +104,9 @@
 
 .grid-card {
   border-radius: 25px 4px 25px 4px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
   @include lightDark(border-color, #ddd, #000);
   margin-bottom: $-l;
   overflow: hidden;
