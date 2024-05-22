@@ -176,6 +176,9 @@ header .search-box.search-active:focus-within {
   gap: $-s;
   align-items: center;
   border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     color: #FFF;
     text-decoration: none;

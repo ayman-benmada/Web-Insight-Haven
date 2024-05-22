@@ -103,8 +103,8 @@
 }
 
 .grid-card {
-  border-radius: 25px 4px 25px 4px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  @include lightDark(box-shadow, rgba(99, 99, 99, 0.2) 0 2px 8px 0, rgba(0, 0, 0, 0.5) 0 2px 8px 0);
   display: flex;
   flex-direction: column;
   @include lightDark(border-color, #ddd, #000);
@@ -113,6 +113,9 @@
   min-width: 100px;
   color: $text-dark;
   transition: border-color ease-in-out 120ms, box-shadow ease-in-out 120ms;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     color: $text-dark;
     text-decoration: none;
